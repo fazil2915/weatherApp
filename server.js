@@ -27,12 +27,14 @@ app.get("/weather", async(req, res) => {
   let weather;
   let error=null;
   try {
-    const response=await axios.get(ApiUrl) 
+    const response=await axios.get(ApiUrl) ;
+    weather=response.data;
   } catch (error) {
-    
+    weather=null;
+    error="please try again"
   }
   // Render the index template with the weather data and error message
-  res.render("index", { weather: null, error: null });
+  res.render("index", { weather, error });
 });
 
 // Start the server and listen on port 3000 or the value of the PORT environment variable
